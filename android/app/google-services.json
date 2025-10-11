@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1007761128242",
+    "project_id": "the-wallpaper-co",
+    "storage_bucket": "the-wallpaper-co.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1007761128242:android:8d9f5601121a05fa8ff52b",
+        "android_client_info": {
+          "package_name": "com.example.the_wallpaper_company"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsIkDVA-ATiZzWcOoLHHo2UE-pQAze1c4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
