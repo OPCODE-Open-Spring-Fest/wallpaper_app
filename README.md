@@ -72,5 +72,49 @@ https://jsonkeeper.com/b/ORGZR
 - Persistent image cache 
 - Modern UI
 
+## Suggested Feature Updates for Open Source Contributions
+
+Here are some suggested feature updates for contributors to work on:
+
+### Beginner-Friendly Tasks
+- **Bug Fixes:**
+  - Identify and fix small UI bugs or alignment issues.
+  - Resolve any redundant code or formatting inconsistencies.
+
+### New Features
+- **Dark Mode Toggle:**
+  - Add a toggle button to enable/disable dark mode.
+- **Search Wallpapers:**
+  - Implement a search bar to find wallpapers by title or category.
+- **Share Wallpaper:**
+  - Add functionality to share wallpapers via social media or messaging apps.
+
+### UI/UX Improvements
+- **Onboarding Screens:**
+  - Create an onboarding flow for first-time users.
+- **Animations:**
+  - Add smooth transitions and animations for better user experience.
+
+### Localization
+- **Multi-Language Support:**
+  - Add support for at least two additional languages.
+
+### Testing
+- **Unit Tests:**
+  - Write unit tests for existing features.
+- **Integration Tests:**
+  - Ensure the app works seamlessly across different platforms.
+
+### Documentation
+- **Update README:**
+  - Add detailed setup instructions for contributors.
+- **Code Comments:**
+  - Add comments to explain complex logic in the codebase.
+
+### Open Issues
+- Create GitHub issues for the above tasks with labels like `good first issue` and `help wanted` to guide contributors.
+
+---
+
 ## License
 MIT
