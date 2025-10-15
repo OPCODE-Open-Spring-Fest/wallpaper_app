@@ -132,7 +132,10 @@ class _WallpaperScreenState extends State<WallpaperScreen>
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    WallpaperLocalizer.getLocalizedWallpaperName(context, wallpaper.title),
+                                    WallpaperLocalizer.getLocalizedWallpaperName(
+                                      context,
+                                      wallpaper.title,
+                                    ),
                                     style: const TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
@@ -151,7 +154,10 @@ class _WallpaperScreenState extends State<WallpaperScreen>
                                       vertical: 6,
                                     ),
                                     child: Text(
-                                      WallpaperLocalizer.getLocalizedCategoryName(context, wallpaper.category),
+                                      WallpaperLocalizer.getLocalizedCategoryName(
+                                        context,
+                                        wallpaper.category,
+                                      ),
                                       style: const TextStyle(
                                         color: Colors.white70,
                                         fontSize: 14,

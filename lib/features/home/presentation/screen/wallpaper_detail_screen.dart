@@ -112,7 +112,10 @@ class _WallpaperDetailScreenState extends State<WallpaperDetailScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          WallpaperLocalizer.getLocalizedWallpaperName(context, widget.wallpaper.title),
+                          WallpaperLocalizer.getLocalizedWallpaperName(
+                            context,
+                            widget.wallpaper.title,
+                          ),
                           style: const TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
@@ -129,7 +132,10 @@ class _WallpaperDetailScreenState extends State<WallpaperDetailScreen> {
                         Container(
                           padding: const EdgeInsets.symmetric(vertical: 6),
                           child: Text(
-                            WallpaperLocalizer.getLocalizedCategoryName(context, widget.wallpaper.category),
+                            WallpaperLocalizer.getLocalizedCategoryName(
+                              context,
+                              widget.wallpaper.category,
+                            ),
                             style: const TextStyle(
                               color: Colors.white70,
                               fontSize: 14,
