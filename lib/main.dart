@@ -2,9 +2,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:the_wallpaper_company/core/constants.dart';
+import 'package:the_wallpaper_company/core/providers/theme_provider.dart';
 import 'package:the_wallpaper_company/features/favorite/provider/favorite_provider.dart';
 import 'package:the_wallpaper_company/features/home/models/wallpaper_model.dart';
 import 'package:the_wallpaper_company/features/home/presentation/screen/home_screen.dart';
@@ -27,6 +27,7 @@ Future<void> main() async {
   runApp(
     MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ChangeNotifierProvider(create: (_) => WallpaperProvider()),
         ChangeNotifierProvider(create: (_) => FavoriteProvider()..init()),
       ],
@@ -84,22 +85,20 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      navigatorKey: navigatorKey,
-      debugShowCheckedModeBanner: false,
-      title: 'The Wallpaper Co.',
-      theme: _isDarkMode
-          ? ThemeData.dark().copyWith(scaffoldBackgroundColor: Colors.black)
-          : ThemeData.light().copyWith(
-              appBarTheme: const AppBarTheme(
-                systemOverlayStyle: SystemUiOverlayStyle(
-                  statusBarColor: Color(0xFFF5F5F5),
-                  statusBarIconBrightness: Brightness.dark, // dark icons
-                  statusBarBrightness: Brightness.light, // for iOS
-                ),
-              ),
-            ),
-      home: const HomeScreen(),
+    return Consumer<ThemeProvider>(
+      builder: (context, themeProvider, child) {
+        return MaterialApp(
+          navigatorKey: navigatorKey,
+          debugShowCheckedModeBanner: false,
+          title: 'The Wallpaper Co.',
+          theme: themeProvider.lightTheme,
+          darkTheme: themeProvider.darkTheme,
+          themeMode: themeProvider.isDarkMode
+              ? ThemeMode.dark
+              : ThemeMode.light,
+          home: const HomeScreen(),
+        );
+      },
     );
   }
 
@@ -113,14 +112,41 @@ class _MyAppState extends State<MyApp> {
         ),
       );
       await remoteConfig.fetchAndActivate();
+      final remoteThemeValue = remoteConfig.getBool(
+        AppConstants.remoteConfigKey,
+      );
+
+      // Sync with theme provider if context is available
+      if (mounted && context.mounted) {
+        final themeProvider = Provider.of<ThemeProvider>(
+          context,
+          listen: false,
+        );
+        themeProvider.setDarkMode(remoteThemeValue);
+      }
+
       setState(() {
-        _isDarkMode = remoteConfig.getBool(AppConstants.remoteConfigKey);
+        _isDarkMode = remoteThemeValue;
         debugPrint('hello Dark Mode:[$_isDarkMode');
       });
+
       remoteConfig.onConfigUpdated.listen((event) async {
         await remoteConfig.activate();
+        final updatedThemeValue = remoteConfig.getBool(
+          AppConstants.remoteConfigKey,
+        );
+
+        // Sync with theme provider if context is available
+        if (mounted && context.mounted) {
+          final themeProvider = Provider.of<ThemeProvider>(
+            context,
+            listen: false,
+          );
+          themeProvider.setDarkMode(updatedThemeValue);
+        }
+
         setState(() {
-          _isDarkMode = remoteConfig.getBool(AppConstants.remoteConfigKey);
+          _isDarkMode = updatedThemeValue;
         });
       });
     } catch (e, stack) {
