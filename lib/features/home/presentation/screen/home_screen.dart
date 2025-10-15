@@ -12,6 +12,8 @@ import 'package:the_wallpaper_company/features/home/presentation/widgets/wallpap
 import 'package:the_wallpaper_company/features/home/provider/wallpaper_provider.dart';
 import 'package:the_wallpaper_company/firebase_message.dart';
 import '../widgets/category_carousel.dart';
+import '../widgets/search_bar_widget.dart';
+import '../widgets/no_results_widget.dart';
 import 'package:the_wallpaper_company/core/constants.dart';
 import 'package:the_wallpaper_company/features/home/presentation/widgets/wallpaper_tile.dart';
 import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
@@ -121,60 +123,76 @@ class _HomeScreenState extends State<HomeScreen> {
                                             sigmaX: 12,
                                             sigmaY: 12,
                                           ),
-                                          child: CategoryCarousel(
-                                            categories: AppConstants.categories,
-                                            selectedCategory:
-                                                provider.selectedCategory,
-                                            onCategorySelected:
-                                                provider.selectCategory,
+                                          child: Column(
+                                            children: [
+                                              const SearchBarWidget(),
+                                              CategoryCarousel(
+                                                categories:
+                                                    AppConstants.categories,
+                                                selectedCategory:
+                                                    provider.selectedCategory,
+                                                onCategorySelected:
+                                                    provider.selectCategory,
+                                              ),
+                                            ],
                                           ),
                                         ),
                                       ),
                                     ),
                                     // expandedHeight: 72,
-                                    toolbarHeight: 150,
+                                    toolbarHeight: 220,
                                   ),
-                                  SliverPadding(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 8,
-                                      vertical: 8,
-                                    ),
-                                    sliver: SliverMasonryGrid.count(
-                                      crossAxisCount: 2,
-                                      mainAxisSpacing: 8,
-                                      crossAxisSpacing: 8,
-                                      childCount:
-                                          visibleWallpapers.length +
-                                          (provider.isPaginating ? 1 : 0),
-                                      itemBuilder: (context, index) {
-                                        if (provider.isPaginating &&
-                                            index == visibleWallpapers.length) {
-                                          return const WallpaperShimmer();
-                                        }
-                                        final wallpaper =
-                                            visibleWallpapers[index];
-                                        return InkWell(
-                                          onTap: () {
-                                            Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    WallpaperScreen(
-                                                      wallpapers:
-                                                          visibleWallpapers,
-                                                      initialIndex: index,
-                                                    ),
-                                              ),
-                                            );
-                                          },
-                                          child: WallpaperTile(
-                                            imageUrl: wallpaper.imageUrl,
-                                            title: wallpaper.title,
-                                            id: wallpaper.id,
+                                  visibleWallpapers.isEmpty &&
+                                          provider.searchQuery.isNotEmpty
+                                      ? SliverFillRemaining(
+                                          child: NoResultsWidget(
+                                            searchQuery: provider.searchQuery,
+                                            onClearSearch: provider.clearSearch,
                                           ),
-                                        );
-                                      },
-                                    ),
-                                  ),
+                                        )
+                                      : SliverPadding(
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: 8,
+                                            vertical: 8,
+                                          ),
+                                          sliver: SliverMasonryGrid.count(
+                                            crossAxisCount: 2,
+                                            mainAxisSpacing: 8,
+                                            crossAxisSpacing: 8,
+                                            childCount:
+                                                visibleWallpapers.length +
+                                                (provider.isPaginating ? 1 : 0),
+                                            itemBuilder: (context, index) {
+                                              if (provider.isPaginating &&
+                                                  index ==
+                                                      visibleWallpapers
+                                                          .length) {
+                                                return const WallpaperShimmer();
+                                              }
+                                              final wallpaper =
+                                                  visibleWallpapers[index];
+                                              return InkWell(
+                                                onTap: () {
+                                                  Navigator.of(context).push(
+                                                    MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          WallpaperScreen(
+                                                            wallpapers:
+                                                                visibleWallpapers,
+                                                            initialIndex: index,
+                                                          ),
+                                                    ),
+                                                  );
+                                                },
+                                                child: WallpaperTile(
+                                                  imageUrl: wallpaper.imageUrl,
+                                                  title: wallpaper.title,
+                                                  id: wallpaper.id,
+                                                ),
+                                              );
+                                            },
+                                          ),
+                                        ),
                                 ],
                               ),
                             ),

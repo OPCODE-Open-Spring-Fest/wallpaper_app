@@ -5,6 +5,8 @@ import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:provider/provider.dart';
 import 'package:the_wallpaper_company/features/favorite/provider/favorite_provider.dart';
+import 'package:the_wallpaper_company/core/localizations/app_localizations.dart';
+import 'package:the_wallpaper_company/core/localizations/wallpaper_localizer.dart';
 import '../../models/wallpaper_model.dart';
 
 class WallpaperScreen extends StatefulWidget {
@@ -130,7 +132,10 @@ class _WallpaperScreenState extends State<WallpaperScreen>
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    wallpaper.title,
+                                    WallpaperLocalizer.getLocalizedWallpaperName(
+                                      context,
+                                      wallpaper.title,
+                                    ),
                                     style: const TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
@@ -149,7 +154,10 @@ class _WallpaperScreenState extends State<WallpaperScreen>
                                       vertical: 6,
                                     ),
                                     child: Text(
-                                      wallpaper.category,
+                                      WallpaperLocalizer.getLocalizedCategoryName(
+                                        context,
+                                        wallpaper.category,
+                                      ),
                                       style: const TextStyle(
                                         color: Colors.white70,
                                         fontSize: 14,
@@ -176,9 +184,9 @@ class _WallpaperScreenState extends State<WallpaperScreen>
                               ),
                               onPressed: () {},
                               icon: const Icon(Icons.download, size: 22),
-                              label: const Text(
-                                'Download',
-                                style: TextStyle(
+                              label: Text(
+                                AppLocalizations.of(context)!.download,
+                                style: const TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 16,
                                 ),

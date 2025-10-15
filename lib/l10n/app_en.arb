@@ -1,0 +1,205 @@
+{
+  "@@locale": "en",
+  "appTitle": "The Wallpaper Co.",
+  "@appTitle": {
+    "description": "The title of the application"
+  },
+  "searchHint": "Search wallpapers by title or category...",
+  "@searchHint": {
+    "description": "Hint text for search bar"
+  },
+  "home": "Home",
+  "@home": {
+    "description": "Home tab label"
+  },
+  "favorites": "Favorites",
+  "@favorites": {
+    "description": "Favorites tab label"
+  },
+  "categories": "Categories",
+  "@categories": {
+    "description": "Categories section label"
+  },
+  "all": "All",
+  "@all": {
+    "description": "All categories option"
+  },
+  "nature": "Nature",
+  "@nature": {
+    "description": "Nature category"
+  },
+  "abstract": "Abstract",
+  "@abstract": {
+    "description": "Abstract category"
+  },
+  "urban": "Urban",
+  "@urban": {
+    "description": "Urban category"
+  },
+  "minimal": "Minimal",
+  "@minimal": {
+    "description": "Minimal category"
+  },
+  "space": "Space",
+  "@space": {
+    "description": "Space category"
+  },
+  "animals": "Animals",
+  "@animals": {
+    "description": "Animals category"
+  },
+  "technology": "Technology",
+  "@technology": {
+    "description": "Technology category"
+  },
+  "art": "Art",
+  "@art": {
+    "description": "Art category"
+  },
+  "noResultsTitle": "No wallpapers found",
+  "@noResultsTitle": {
+    "description": "Title when no search results are found"
+  },
+  "noResultsMessage": "No results for \"{query}\"",
+  "@noResultsMessage": {
+    "description": "Message when no search results are found",
+    "placeholders": {
+      "query": {
+        "type": "String",
+        "description": "The search query that returned no results"
+      }
+    }
+  },
+  "clearSearch": "Clear Search",
+  "@clearSearch": {
+    "description": "Button to clear search"
+  },
+  "download": "Download",
+  "@download": {
+    "description": "Download button text"
+  },
+  "setWallpaper": "Set Wallpaper",
+  "@setWallpaper": {
+    "description": "Set wallpaper button text"
+  },
+  "share": "Share",
+  "@share": {
+    "description": "Share button text"
+  },
+  "addToFavorites": "Add to Favorites",
+  "@addToFavorites": {
+    "description": "Add to favorites button text"
+  },
+  "removeFromFavorites": "Remove from Favorites",
+  "@removeFromFavorites": {
+    "description": "Remove from favorites button text"
+  },
+  "downloadSuccess": "Downloaded successfully",
+  "@downloadSuccess": {
+    "description": "Success message when wallpaper is downloaded"
+  },
+  "downloadFailed": "Download failed",
+  "@downloadFailed": {
+    "description": "Error message when download fails"
+  },
+  "wallpaperSet": "Wallpaper set successfully",
+  "@wallpaperSet": {
+    "description": "Success message when wallpaper is set"
+  },
+  "wallpaperSetFailed": "Failed to set wallpaper",
+  "@wallpaperSetFailed": {
+    "description": "Error message when setting wallpaper fails"
+  },
+  "loading": "Loading...",
+  "@loading": {
+    "description": "Loading text"
+  },
+  "retry": "Retry",
+  "@retry": {
+    "description": "Retry button text"
+  },
+  "error": "Error",
+  "@error": {
+    "description": "Error title"
+  },
+  "networkError": "Network error occurred",
+  "@networkError": {
+    "description": "Network error message"
+  },
+  "language": "Language",
+  "@language": {
+    "description": "Language selection label"
+  },
+  "english": "English",
+  "@english": {
+    "description": "English language option"
+  },
+  "hindi": "हिंदी",
+  "@hindi": {
+    "description": "Hindi language option"
+  },
+  "settings": "Settings",
+  "@settings": {
+    "description": "Settings title"
+  },
+  "about": "About",
+  "@about": {
+    "description": "About section"
+  },
+  "version": "Version",
+  "@version": {
+    "description": "App version label"
+  },
+  "developer": "Developer",
+  "@developer": {
+    "description": "Developer label"
+  },
+  "pullToRefresh": "Pull to refresh",
+  "@pullToRefresh": {
+    "description": "Pull to refresh instruction"
+  },
+  "releaseToRefresh": "Release to refresh",
+  "@releaseToRefresh": {
+    "description": "Release to refresh instruction"
+  },
+  "refreshing": "Refreshing...",
+  "@refreshing": {
+    "description": "Refreshing status text"
+  },
+  "noFavorites": "No favorites yet",
+  "@noFavorites": {
+    "description": "Message when no favorites are saved"
+  },
+  "noFavoritesMessage": "Add some wallpapers to your favorites to see them here",
+  "@noFavoritesMessage": {
+    "description": "Detailed message when no favorites are saved"
+  },
+  "mountain": "Mountain",
+  "@mountain": {
+    "description": "Mountain wallpaper name"
+  },
+  "forest": "Forest",
+  "@forest": {
+    "description": "Forest wallpaper name"
+  },
+  "ocean": "Ocean",
+  "@ocean": {
+    "description": "Ocean wallpaper name"
+  },
+  "sunset": "Sunset",
+  "@sunset": {
+    "description": "Sunset wallpaper name"
+  },
+  "sunrise": "Sunrise",
+  "@sunrise": {
+    "description": "Sunrise wallpaper name"
+  },
+  "galaxy": "Galaxy",
+  "@galaxy": {
+    "description": "Galaxy wallpaper name"
+  },
+  "city": "City",
+  "@city": {
+    "description": "City wallpaper name"
+  }
+}

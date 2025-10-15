@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import '../../../../core/utils/category_utils.dart';
 
 class CategoryCarousel extends StatelessWidget {
   final List<Map<String, String>> categories;
@@ -77,7 +78,10 @@ class CategoryCarousel extends StatelessWidget {
                     left: 0,
                     right: 0,
                     child: Text(
-                      category['name']!,
+                      CategoryUtils.getLocalizedCategoryName(
+                        context,
+                        category['name']!,
+                      ),
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: isSelected ? Colors.white : Colors.white70,

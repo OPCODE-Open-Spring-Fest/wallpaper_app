@@ -8,19 +8,38 @@ class WallpaperProvider extends ChangeNotifier {
   List<Wallpaper> _wallpapers = [];
   int _visibleCount = 10;
   bool _isPaginating = false;
+  String _searchQuery = '';
 
-  List<Wallpaper> get wallpapers => _selectedCategory == 'All'
-      ? _wallpapers.take(_visibleCount).toList()
-      : _wallpapers
-            .where((w) => w.category == _selectedCategory)
-            .toList()
-            .take(_visibleCount)
-            .toList();
+  List<Wallpaper> get wallpapers {
+    List<Wallpaper> filteredWallpapers = _wallpapers;
+
+    // Apply search filter
+    if (_searchQuery.isNotEmpty) {
+      filteredWallpapers = _wallpapers.where((wallpaper) {
+        return wallpaper.title.toLowerCase().contains(
+              _searchQuery.toLowerCase(),
+            ) ||
+            wallpaper.category.toLowerCase().contains(
+              _searchQuery.toLowerCase(),
+            );
+      }).toList();
+    }
+
+    // Apply category filter
+    if (_selectedCategory != 'All') {
+      filteredWallpapers = filteredWallpapers
+          .where((w) => w.category == _selectedCategory)
+          .toList();
+    }
+
+    return filteredWallpapers.take(_visibleCount).toList();
+  }
 
   void addWallpaper(Wallpaper wallpaper) {
     _wallpapers.add(wallpaper);
     notifyListeners();
   }
+
   bool _isLoading = false;
   bool get isLoading => _isLoading;
   bool get isPaginating => _isPaginating;
@@ -28,6 +47,8 @@ class WallpaperProvider extends ChangeNotifier {
 
   String _selectedCategory = 'All';
   String get selectedCategory => _selectedCategory;
+
+  String get searchQuery => _searchQuery;
 
   Future<void> fetchWallpapers() async {
     _isLoading = true;
@@ -54,12 +75,49 @@ class WallpaperProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void updateSearchQuery(String query) {
+    _searchQuery = query;
+    _visibleCount = 10; // Reset visible count when searching
+    notifyListeners();
+  }
+
+  void clearSearch() {
+    _searchQuery = '';
+    _visibleCount = 10;
+    notifyListeners();
+  }
+
   void loadMore() {
-    if (_visibleCount < _wallpapers.length && !_isPaginating) {
+    // Get the total count of filtered wallpapers
+    List<Wallpaper> filteredWallpapers = _wallpapers;
+
+    // Apply search filter
+    if (_searchQuery.isNotEmpty) {
+      filteredWallpapers = _wallpapers.where((wallpaper) {
+        return wallpaper.title.toLowerCase().contains(
+              _searchQuery.toLowerCase(),
+            ) ||
+            wallpaper.category.toLowerCase().contains(
+              _searchQuery.toLowerCase(),
+            );
+      }).toList();
+    }
+
+    // Apply category filter
+    if (_selectedCategory != 'All') {
+      filteredWallpapers = filteredWallpapers
+          .where((w) => w.category == _selectedCategory)
+          .toList();
+    }
+
+    if (_visibleCount < filteredWallpapers.length && !_isPaginating) {
       _isPaginating = true;
       notifyListeners();
       Future.delayed(const Duration(milliseconds: 500), () {
-        _visibleCount = (_visibleCount + 10).clamp(0, _wallpapers.length);
+        _visibleCount = (_visibleCount + 10).clamp(
+          0,
+          filteredWallpapers.length,
+        );
         _isPaginating = false;
         notifyListeners();
       });
