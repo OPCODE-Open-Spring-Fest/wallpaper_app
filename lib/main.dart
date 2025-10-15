@@ -2,9 +2,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:the_wallpaper_company/core/constants.dart';
 import 'package:the_wallpaper_company/core/providers/theme_provider.dart';
+import 'package:the_wallpaper_company/core/providers/language_provider.dart';
+import 'package:the_wallpaper_company/core/localizations/app_localizations.dart';
 import 'package:the_wallpaper_company/features/favorite/provider/favorite_provider.dart';
 import 'package:the_wallpaper_company/features/home/models/wallpaper_model.dart';
 import 'package:the_wallpaper_company/features/home/presentation/screen/home_screen.dart';
@@ -28,6 +31,7 @@ Future<void> main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
+        ChangeNotifierProvider(create: (_) => LanguageProvider()),
         ChangeNotifierProvider(create: (_) => WallpaperProvider()),
         ChangeNotifierProvider(create: (_) => FavoriteProvider()..init()),
       ],
@@ -85,8 +89,8 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ThemeProvider>(
-      builder: (context, themeProvider, child) {
+    return Consumer2<ThemeProvider, LanguageProvider>(
+      builder: (context, themeProvider, languageProvider, child) {
         return MaterialApp(
           navigatorKey: navigatorKey,
           debugShowCheckedModeBanner: false,
@@ -96,6 +100,14 @@ class _MyAppState extends State<MyApp> {
           themeMode: themeProvider.isDarkMode
               ? ThemeMode.dark
               : ThemeMode.light,
+          locale: languageProvider.currentLocale,
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: LanguageProvider.supportedLocales,
           home: const HomeScreen(),
         );
       },

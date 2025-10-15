@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../core/localizations/app_localizations.dart';
 
 class NoResultsWidget extends StatelessWidget {
   final String searchQuery;
@@ -27,7 +28,8 @@ class NoResultsWidget extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             Text(
-              'No wallpapers found',
+              AppLocalizations.of(context)?.noResultsTitle ??
+                  'No wallpapers found',
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                 color: Theme.of(context).brightness == Brightness.dark
                     ? Colors.grey[400]
@@ -37,7 +39,10 @@ class NoResultsWidget extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              'No results for "${searchQuery.trim()}"',
+              AppLocalizations.of(
+                    context,
+                  )?.noResultsMessage(searchQuery.trim()) ??
+                  'No results for "${searchQuery.trim()}"',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 color: Theme.of(context).brightness == Brightness.dark
                     ? Colors.grey[500]
@@ -49,7 +54,9 @@ class NoResultsWidget extends StatelessWidget {
             ElevatedButton.icon(
               onPressed: onClearSearch,
               icon: const Icon(Icons.clear),
-              label: const Text('Clear Search'),
+              label: Text(
+                AppLocalizations.of(context)?.clearSearch ?? 'Clear Search',
+              ),
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 24,

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../provider/wallpaper_provider.dart';
 import 'theme_toggle_button.dart';
+import 'language_toggle_button.dart';
+import '../../../../core/localizations/app_localizations.dart';
 
 class SearchBarWidget extends StatefulWidget {
   const SearchBarWidget({super.key});
@@ -58,7 +60,9 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
                       provider.updateSearchQuery(value);
                     },
                     decoration: InputDecoration(
-                      hintText: 'Search wallpapers by title or category...',
+                      hintText:
+                          AppLocalizations.of(context)?.searchHint ??
+                          'Search wallpapers by title or category...',
                       hintStyle: TextStyle(
                         color: Theme.of(context).brightness == Brightness.dark
                             ? Colors.grey[400]
@@ -109,6 +113,8 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
                   ),
                 ),
               ),
+              const SizedBox(width: 8),
+              const LanguageToggleButton(),
               const SizedBox(width: 8),
               const ThemeToggleButton(),
             ],

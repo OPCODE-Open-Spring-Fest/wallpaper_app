@@ -6,6 +6,8 @@ import 'package:provider/provider.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:the_wallpaper_company/features/favorite/provider/favorite_provider.dart';
 import 'package:the_wallpaper_company/features/home/provider/wallpaper_provider.dart';
+import '../../../../core/localizations/app_localizations.dart';
+import '../../../../core/localizations/wallpaper_localizer.dart';
 import '../../models/wallpaper_model.dart';
 
 class WallpaperDetailScreen extends StatefulWidget {
@@ -110,7 +112,7 @@ class _WallpaperDetailScreenState extends State<WallpaperDetailScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          widget.wallpaper.title,
+                          WallpaperLocalizer.getLocalizedWallpaperName(context, widget.wallpaper.title),
                           style: const TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
@@ -127,7 +129,7 @@ class _WallpaperDetailScreenState extends State<WallpaperDetailScreen> {
                         Container(
                           padding: const EdgeInsets.symmetric(vertical: 6),
                           child: Text(
-                            widget.wallpaper.category,
+                            WallpaperLocalizer.getLocalizedCategoryName(context, widget.wallpaper.category),
                             style: const TextStyle(
                               color: Colors.white70,
                               fontSize: 14,
@@ -154,9 +156,9 @@ class _WallpaperDetailScreenState extends State<WallpaperDetailScreen> {
                     ),
                     onPressed: () {},
                     icon: const Icon(Icons.download, size: 22),
-                    label: const Text(
-                      'Download',
-                      style: TextStyle(
+                    label: Text(
+                      AppLocalizations.of(context)!.download,
+                      style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
                       ),
