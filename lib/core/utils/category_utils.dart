@@ -2,85 +2,29 @@ import 'package:flutter/material.dart';
 import '../localizations/app_localizations.dart';
 
 class CategoryUtils {
-  static String getLocalizedCategoryName(
-    BuildContext context,
-    String categoryName,
-  ) {
-    final localizations = AppLocalizations.of(context);
-
-    switch (categoryName.toLowerCase()) {
+  static String getLocalizedCategoryName(BuildContext context, String category) {
+    final loc = AppLocalizations.of(context) ?? AppLocalizations(const Locale('en'));
+    switch (category.toLowerCase()) {
       case 'all':
-        return localizations?.all ?? 'All';
+        return loc.all;
       case 'nature':
-        return localizations?.nature ?? 'Nature';
+        return loc.nature;
       case 'abstract':
-        return localizations?.abstract ?? 'Abstract';
+        return loc.abstract;
       case 'urban':
-        return localizations?.urban ?? 'Urban';
+        return loc.urban;
       case 'minimal':
-        return localizations?.minimal ?? 'Minimal';
+        return loc.minimal;
       case 'space':
-        return _getSpaceTranslation(context);
+        return loc.space;
       case 'animals':
-        return _getAnimalsTranslation(context);
+        return loc.animals;
       case 'art':
-        return _getArtTranslation(context);
+        return loc.art;
       case 'cars':
-        return _getCarsTranslation(context);
-      case 'technology':
-        return _getTechnologyTranslation(context);
+        return loc.cars;
       default:
-        return categoryName;
-    }
-  }
-
-  static String _getSpaceTranslation(BuildContext context) {
-    final locale = Localizations.localeOf(context);
-    switch (locale.languageCode) {
-      case 'hi':
-        return 'अंतरिक्ष';
-      default:
-        return 'Space';
-    }
-  }
-
-  static String _getAnimalsTranslation(BuildContext context) {
-    final locale = Localizations.localeOf(context);
-    switch (locale.languageCode) {
-      case 'hi':
-        return 'जानवर';
-      default:
-        return 'Animals';
-    }
-  }
-
-  static String _getArtTranslation(BuildContext context) {
-    final locale = Localizations.localeOf(context);
-    switch (locale.languageCode) {
-      case 'hi':
-        return 'कला';
-      default:
-        return 'Art';
-    }
-  }
-
-  static String _getCarsTranslation(BuildContext context) {
-    final locale = Localizations.localeOf(context);
-    switch (locale.languageCode) {
-      case 'hi':
-        return 'कारें';
-      default:
-        return 'Cars';
-    }
-  }
-
-  static String _getTechnologyTranslation(BuildContext context) {
-    final locale = Localizations.localeOf(context);
-    switch (locale.languageCode) {
-      case 'hi':
-        return 'तकनीक';
-      default:
-        return 'Technology';
+        return category;
     }
   }
 }

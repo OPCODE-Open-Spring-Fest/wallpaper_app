@@ -3,7 +3,6 @@ import '../providers/language_provider.dart';
 
 class AppLocalizations {
   final Locale locale;
-
   AppLocalizations(this.locale);
 
   static AppLocalizations? of(BuildContext context) {
@@ -18,6 +17,10 @@ class AppLocalizations {
     switch (locale.languageCode) {
       case 'hi':
         return 'द वॉलपेपर कंपनी';
+      case 'es':
+        return 'La Compañía de Fondos';
+      case 'ja':
+        return '壁紙会社';
       default:
         return 'The Wallpaper Co.';
     }
@@ -27,6 +30,10 @@ class AppLocalizations {
     switch (locale.languageCode) {
       case 'hi':
         return 'शीर्षक या श्रेणी द्वारा वॉलपेपर खोजें...';
+      case 'es':
+        return 'Busca fondos por título o categoría...';
+      case 'ja':
+        return 'タイトルやカテゴリで壁紙を検索...';
       default:
         return 'Search wallpapers by title or category...';
     }
@@ -36,6 +43,10 @@ class AppLocalizations {
     switch (locale.languageCode) {
       case 'hi':
         return 'होम';
+      case 'es':
+        return 'Inicio';
+      case 'ja':
+        return 'ホーム';
       default:
         return 'Home';
     }
@@ -45,6 +56,10 @@ class AppLocalizations {
     switch (locale.languageCode) {
       case 'hi':
         return 'पसंदीदा';
+      case 'es':
+        return 'Favoritos';
+      case 'ja':
+        return 'お気に入り';
       default:
         return 'Favorites';
     }
@@ -54,6 +69,10 @@ class AppLocalizations {
     switch (locale.languageCode) {
       case 'hi':
         return 'सभी';
+      case 'es':
+        return 'Todo';
+      case 'ja':
+        return 'すべて';
       default:
         return 'All';
     }
@@ -63,6 +82,10 @@ class AppLocalizations {
     switch (locale.languageCode) {
       case 'hi':
         return 'प्रकृति';
+      case 'es':
+        return 'Naturaleza';
+      case 'ja':
+        return '自然';
       default:
         return 'Nature';
     }
@@ -72,6 +95,10 @@ class AppLocalizations {
     switch (locale.languageCode) {
       case 'hi':
         return 'अमूर्त';
+      case 'es':
+        return 'Abstracto';
+      case 'ja':
+        return '抽象的';
       default:
         return 'Abstract';
     }
@@ -81,6 +108,10 @@ class AppLocalizations {
     switch (locale.languageCode) {
       case 'hi':
         return 'शहरी';
+      case 'es':
+        return 'Urbano';
+      case 'ja':
+        return '都市';
       default:
         return 'Urban';
     }
@@ -90,6 +121,10 @@ class AppLocalizations {
     switch (locale.languageCode) {
       case 'hi':
         return 'न्यूनतम';
+      case 'es':
+        return 'Minimalista';
+      case 'ja':
+        return 'ミニマル';
       default:
         return 'Minimal';
     }
@@ -99,6 +134,10 @@ class AppLocalizations {
     switch (locale.languageCode) {
       case 'hi':
         return 'अंतरिक्ष';
+      case 'es':
+        return 'Espacio';
+      case 'ja':
+        return '宇宙';
       default:
         return 'Space';
     }
@@ -108,6 +147,10 @@ class AppLocalizations {
     switch (locale.languageCode) {
       case 'hi':
         return 'जानवर';
+      case 'es':
+        return 'Animales';
+      case 'ja':
+        return '動物';
       default:
         return 'Animals';
     }
@@ -117,6 +160,10 @@ class AppLocalizations {
     switch (locale.languageCode) {
       case 'hi':
         return 'कला';
+      case 'es':
+        return 'Arte';
+      case 'ja':
+        return 'アート';
       default:
         return 'Art';
     }
@@ -126,8 +173,51 @@ class AppLocalizations {
     switch (locale.languageCode) {
       case 'hi':
         return 'कारें';
+      case 'es':
+        return 'Coches';
+      case 'ja':
+        return '車';
       default:
         return 'Cars';
+    }
+  }
+
+  String get download {
+    switch (locale.languageCode) {
+      case 'hi':
+        return 'डाउनलोड';
+      case 'es':
+        return 'Descargar';
+      case 'ja':
+        return 'ダウンロード';
+      default:
+        return 'Download';
+    }
+  }
+
+  String get share {
+    switch (locale.languageCode) {
+      case 'hi':
+        return 'साझा करें';
+      case 'es':
+        return 'Compartir';
+      case 'ja':
+        return '共有する';
+      default:
+        return 'Share';
+    }
+  }
+
+  String get clearSearch {
+    switch (locale.languageCode) {
+      case 'hi':
+        return 'खोज साफ़ करें';
+      case 'es':
+        return 'Borrar búsqueda';
+      case 'ja':
+        return '検索をクリア';
+      default:
+        return 'Clear Search';
     }
   }
 
@@ -135,6 +225,10 @@ class AppLocalizations {
     switch (locale.languageCode) {
       case 'hi':
         return 'कोई वॉलपेपर नहीं मिला';
+      case 'es':
+        return 'No se encontraron fondos';
+      case 'ja':
+        return '壁紙が見つかりません';
       default:
         return 'No wallpapers found';
     }
@@ -144,89 +238,12 @@ class AppLocalizations {
     switch (locale.languageCode) {
       case 'hi':
         return '"$query" के लिए कोई परिणाम नहीं';
+      case 'es':
+        return 'Sin resultados para "$query"';
+      case 'ja':
+        return '"$query" の結果はありません';
       default:
         return 'No results for "$query"';
-    }
-  }
-
-  String get clearSearch {
-    switch (locale.languageCode) {
-      case 'hi':
-        return 'खोज साफ़ करें';
-      default:
-        return 'Clear Search';
-    }
-  }
-
-  String get download {
-    switch (locale.languageCode) {
-      case 'hi':
-        return 'डाउनलोड';
-      default:
-        return 'Download';
-    }
-  }
-
-  String get setWallpaper {
-    switch (locale.languageCode) {
-      case 'hi':
-        return 'वॉलपेपर सेट करें';
-      default:
-        return 'Set Wallpaper';
-    }
-  }
-
-  String get share {
-    switch (locale.languageCode) {
-      case 'hi':
-        return 'साझा करें';
-      default:
-        return 'Share';
-    }
-  }
-
-  String get loading {
-    switch (locale.languageCode) {
-      case 'hi':
-        return 'लोड हो रहा है...';
-      default:
-        return 'Loading...';
-    }
-  }
-
-  String get error {
-    switch (locale.languageCode) {
-      case 'hi':
-        return 'त्रुटि';
-      default:
-        return 'Error';
-    }
-  }
-
-  String get retry {
-    switch (locale.languageCode) {
-      case 'hi':
-        return 'पुनः प्रयास करें';
-      default:
-        return 'Retry';
-    }
-  }
-
-  String get noFavorites {
-    switch (locale.languageCode) {
-      case 'hi':
-        return 'अभी तक कोई पसंदीदा नहीं';
-      default:
-        return 'No favorites yet';
-    }
-  }
-
-  String get noFavoritesMessage {
-    switch (locale.languageCode) {
-      case 'hi':
-        return 'यहाँ देखने के लिए कुछ वॉलपेपर को अपने पसंदीदा में जोड़ें';
-      default:
-        return 'Add some wallpapers to your favorites to see them here';
     }
   }
 }

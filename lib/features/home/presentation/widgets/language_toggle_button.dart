@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:the_wallpaper_company/core/providers/language_provider.dart';
+// import '../providers/language_provider.dart';
 
 class LanguageToggleButton extends StatelessWidget {
   const LanguageToggleButton({super.key});
@@ -9,55 +10,51 @@ class LanguageToggleButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<LanguageProvider>(
       builder: (context, languageProvider, child) {
+        // Display text for the currently selected language
+        String displayText;
+        Color textColor;
+//language toggle button 
+        switch (languageProvider.currentLocale.languageCode) {
+          case 'hi':
+            displayText = 'हि';
+            textColor = Colors.blue;
+            break;
+          case 'en':
+            displayText = 'EN';
+            textColor = Colors.orange;
+            break;
+          case 'es':
+            displayText = 'ES';
+            textColor = Colors.green;
+            break;
+          case 'ja':
+            displayText = 'JA';
+            textColor = Colors.red;
+            break;
+          default:
+            displayText = 'EN';
+            textColor = Colors.orange;
+        }
+
         return Container(
           margin: const EdgeInsets.only(right: 8),
           decoration: BoxDecoration(
-            color: Theme.of(context).brightness == Brightness.dark
-                ? Colors.grey[800]?.withValues(alpha: 0.8)
-                : Colors.white.withValues(alpha: 0.8),
+            color: Colors.white.withOpacity(0.8),
             borderRadius: BorderRadius.circular(25),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: 0.1),
-                blurRadius: 10,
-                offset: const Offset(0, 2),
-              ),
-            ],
           ),
           child: Material(
             color: Colors.transparent,
             child: InkWell(
               borderRadius: BorderRadius.circular(25),
-              onTap: () {
-                languageProvider.toggleLanguage();
-              },
+              onTap: () => languageProvider.toggleLanguage(), // cycles language
               child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 12,
-                  vertical: 8,
-                ),
-                child: AnimatedSwitcher(
-                  duration: const Duration(milliseconds: 300),
-                  transitionBuilder:
-                      (Widget child, Animation<double> animation) {
-                        return ScaleTransition(
-                          scale: animation,
-                          child: FadeTransition(
-                            opacity: animation,
-                            child: child,
-                          ),
-                        );
-                      },
-                  child: Text(
-                    languageProvider.isHindi ? 'EN' : 'हि',
-                    key: ValueKey(languageProvider.currentLocale.languageCode),
-                    style: TextStyle(
-                      color: languageProvider.isHindi
-                          ? Colors.orange[600]
-                          : Colors.blue[600],
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                    ),
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                child: Text(
+                  displayText,
+                  style: TextStyle(
+                    color: textColor,
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),

@@ -138,7 +138,7 @@ class NotificationServices {
   //function to get device token on which we will send the notifications
   Future<String> getDeviceToken() async {
     String? token = await messaging.getToken();
-    return token!;
+    return token ?? '';
   }
 
   void isTokenRefresh() async {
