@@ -7,34 +7,50 @@ class LanguageProvider extends ChangeNotifier {
 
   Locale get currentLocale => _currentLocale;
 
+  static const List<Locale> supportedLocales = [
+    Locale('en'),
+    Locale('hi'),
+    Locale('es'),
+    Locale('ja'),
+  ];
+
   LanguageProvider() {
     _loadLanguagePreference();
   }
 
   void setLanguage(Locale locale) {
     if (_currentLocale == locale) return;
-
     _currentLocale = locale;
     _saveLanguagePreference();
     notifyListeners();
   }
 
   void toggleLanguage() {
+    // Cycle: en → hi → es → ja → en
     if (_currentLocale.languageCode == 'en') {
       setLanguage(const Locale('hi'));
+    } else if (_currentLocale.languageCode == 'hi') {
+      setLanguage(const Locale('es'));
+    } else if (_currentLocale.languageCode == 'es') {
+      setLanguage(const Locale('ja'));
     } else {
       setLanguage(const Locale('en'));
     }
   }
 
-  bool get isHindi => _currentLocale.languageCode == 'hi';
   bool get isEnglish => _currentLocale.languageCode == 'en';
+  bool get isHindi => _currentLocale.languageCode == 'hi';
+  bool get isSpanish => _currentLocale.languageCode == 'es';
+  bool get isJapanese => _currentLocale.languageCode == 'ja';
 
   String get currentLanguageName {
     switch (_currentLocale.languageCode) {
       case 'hi':
         return 'हिंदी';
-      case 'en':
+      case 'es':
+        return 'Español';
+      case 'ja':
+        return '日本語';
       default:
         return 'English';
     }
@@ -43,8 +59,8 @@ class LanguageProvider extends ChangeNotifier {
   Future<void> _loadLanguagePreference() async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      final languageCode = prefs.getString(_languagePreferenceKey) ?? 'en';
-      _currentLocale = Locale(languageCode);
+      final code = prefs.getString(_languagePreferenceKey) ?? 'en';
+      _currentLocale = Locale(code);
       notifyListeners();
     } catch (e) {
       debugPrint('Error loading language preference: $e');
@@ -62,6 +78,4 @@ class LanguageProvider extends ChangeNotifier {
       debugPrint('Error saving language preference: $e');
     }
   }
-
-  static const List<Locale> supportedLocales = [Locale('en'), Locale('hi')];
 }

@@ -4,6 +4,7 @@ import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
+
 import 'package:the_wallpaper_company/core/constants.dart';
 import 'package:the_wallpaper_company/core/providers/theme_provider.dart';
 import 'package:the_wallpaper_company/core/providers/language_provider.dart';
@@ -27,6 +28,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+
   runApp(
     MultiProvider(
       providers: [
@@ -49,16 +51,16 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   bool _isDarkMode = false;
+
   @override
   void initState() {
     super.initState();
     _initRemoteConfig();
+
     // Handle notification tap when app is launched from terminated state
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      final initialMessage = await FirebaseMessaging.instance
-          .getInitialMessage();
+      final initialMessage = await FirebaseMessaging.instance.getInitialMessage();
       if (initialMessage != null) {
-        // Use the same logic as _handleBackgroundMessage
         final data = initialMessage.data;
         final wallpaperId = data['id'];
         final imageUrl = data['imageUrl'];
@@ -94,20 +96,27 @@ class _MyAppState extends State<MyApp> {
         return MaterialApp(
           navigatorKey: navigatorKey,
           debugShowCheckedModeBanner: false,
-          title: 'The Wallpaper Co.',
+
+          // 🔹 Title localized
+          title: AppLocalizations(languageProvider.currentLocale).appTitle,
+
+          // 🔹 Theme & Dark Mode
           theme: themeProvider.lightTheme,
           darkTheme: themeProvider.darkTheme,
-          themeMode: themeProvider.isDarkMode
-              ? ThemeMode.dark
-              : ThemeMode.light,
+          themeMode:
+              themeProvider.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+
+          // 🔹 Localization setup
           locale: languageProvider.currentLocale,
+          supportedLocales: LanguageProvider.supportedLocales,
           localizationsDelegates: const [
             AppLocalizations.delegate,
             GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate,
           ],
-          supportedLocales: LanguageProvider.supportedLocales,
+
+          // 🔹 Home Screen
           home: const HomeScreen(),
         );
       },
@@ -124,36 +133,29 @@ class _MyAppState extends State<MyApp> {
         ),
       );
       await remoteConfig.fetchAndActivate();
-      final remoteThemeValue = remoteConfig.getBool(
-        AppConstants.remoteConfigKey,
-      );
 
-      // Sync with theme provider if context is available
+      final remoteThemeValue = remoteConfig.getBool(AppConstants.remoteConfigKey);
+
+      // Sync theme with provider if context is available
       if (mounted && context.mounted) {
-        final themeProvider = Provider.of<ThemeProvider>(
-          context,
-          listen: false,
-        );
+        final themeProvider =
+            Provider.of<ThemeProvider>(context, listen: false);
         themeProvider.setDarkMode(remoteThemeValue);
       }
 
       setState(() {
         _isDarkMode = remoteThemeValue;
-        debugPrint('hello Dark Mode:[$_isDarkMode');
+        debugPrint('Dark Mode: $_isDarkMode');
       });
 
       remoteConfig.onConfigUpdated.listen((event) async {
         await remoteConfig.activate();
-        final updatedThemeValue = remoteConfig.getBool(
-          AppConstants.remoteConfigKey,
-        );
+        final updatedThemeValue =
+            remoteConfig.getBool(AppConstants.remoteConfigKey);
 
-        // Sync with theme provider if context is available
         if (mounted && context.mounted) {
-          final themeProvider = Provider.of<ThemeProvider>(
-            context,
-            listen: false,
-          );
+          final themeProvider =
+              Provider.of<ThemeProvider>(context, listen: false);
           themeProvider.setDarkMode(updatedThemeValue);
         }
 
@@ -167,3 +169,4 @@ class _MyAppState extends State<MyApp> {
     }
   }
 }
+
