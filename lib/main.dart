@@ -15,6 +15,7 @@ import 'package:the_wallpaper_company/features/home/presentation/screen/wallpape
 import 'package:the_wallpaper_company/features/home/provider/wallpaper_provider.dart';
 
 import 'package:the_wallpaper_company/firebase_options.dart';
+import 'package:the_wallpaper_company/onboardingScreen/introPage.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
@@ -108,7 +109,7 @@ class _MyAppState extends State<MyApp> {
             GlobalCupertinoLocalizations.delegate,
           ],
           supportedLocales: LanguageProvider.supportedLocales,
-          home: const HomeScreen(),
+          home: const IntroPage1(),
         );
       },
     );
