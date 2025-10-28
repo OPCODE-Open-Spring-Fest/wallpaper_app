@@ -1,120 +1,122 @@
-# The Wallpaper Company
+🚀 Setup & Installation
+1. Clone the repository
+git clone <your-repo-url>
+cd the_wallpaper_company
 
-A production-ready Flutter wallpaper app for the Kroozelabs Intern Challenge.
+2. Install dependencies
+flutter pub get
 
-## Screenshots
+3. Run the app
+flutter run
 
-![App Screenshot](screenshots.png)
+🔥 Firebase Setup
+1. Install the FlutterFire CLI
+dart pub global activate flutterfire_cli
 
----
+2. Login to Firebase
+flutterfire login
 
-## Setup & Installation
+3. Initialize Firebase
+flutterfire configure
 
-1. **Clone the repository:**
-   ```bash
-   git clone <your-repo-url>
-   cd the_wallpaper_company
-   ```
-2. **Install dependencies:**
-   ```bash
-   flutter pub get
-   ```
-3. **Run the app:**
-   ```bash
-   flutter run
-   ```
 
-## Firebase Setup
+Select your Firebase project and supported platforms (Android/iOS).
 
-1. Install the FlutterFire CLI:
-   ```bash
-   dart pub global activate flutterfire_cli
-   ```
-2. Login to Firebase:
-   ```bash
-   flutterfire login
-   ```
-3. Initialize Firebase in your project:
-   ```bash
-   flutterfire configure
-   ```
-   - Select your Firebase project and platforms (Android/iOS).
-   - This will generate `lib/firebase_options.dart` automatically.
-4. Add `google-services.json` (Android) to `android/app/`.
-5. Add `GoogleService-Info.plist` (iOS) to `ios/Runner/`.
-6. Enable **Cloud Messaging** and **Remote Config** in the Firebase Console.
+This automatically generates lib/firebase_options.dart.
 
-For more details, see the [FlutterFire CLI documentation](https://firebase.flutter.dev/docs/cli/).
+4. Add platform-specific configuration files
 
-## Remote Config Keys Used
+google-services.json → android/app/
 
-- `dark_mode_enabled` (bool): Toggles dark mode in the app.
-  - Example usage: `remoteConfig.getBool('dark_mode_enabled')`
+GoogleService-Info.plist → ios/Runner/
 
-## JSON Endpoint Usage
+5. Enable required Firebase services
 
-Wallpapers are fetched from:
-```
+Cloud Messaging
+
+Remote Config
+
+📘 Reference: FlutterFire CLI Documentation
+
+⚙️ Remote Config Keys
+Key	Type	Description
+dark_mode_enabled	bool	Toggles dark mode in the app.
+
+Usage Example:
+
+remoteConfig.getBool('dark_mode_enabled')
+
+🌐 JSON Endpoint
+
+Wallpapers are fetched from the endpoint below:
+
 https://jsonkeeper.com/b/ORGZR
-```
-- The endpoint returns a list of wallpaper objects in JSON format.
-- Each wallpaper object contains: `id`, `title`, `imageUrl`, `category`.
 
 
-## Features
-- Home screen with category carousel
-- Staggered grid and shimmer loading(Printerest Style)
-- Fullscreen preview and favorites
-- Pull-to-refresh and double-tap to like animation
-- Firebase Remote Config for dark mode
-- Firebase Cloud Messaging for notifications
-- Provider for state management
-- Persistent image cache 
-- Modern UI
+Each wallpaper object includes:
 
-## Suggested Feature Updates for Open Source Contributions
+{
+  "id": "1",
+  "title": "Abstract Sky",
+  "imageUrl": "https://example.com/image.jpg",
+  "category": "Nature"
+}
 
-Here are some suggested feature updates for contributors to work on:
+✨ Features
 
-### Beginner-Friendly Tasks
-- **Bug Fixes:**
-  - Identify and fix small UI bugs or alignment issues.
-  - Resolve any redundant code or formatting inconsistencies.
+✅ Home screen with category carousel
+✅ Staggered grid layout (Pinterest-style)
+✅ Shimmer loading effect
+✅ Fullscreen preview and favorites
+✅ Pull-to-refresh and double-tap like animation
+✅ Firebase Remote Config for dark mode
+✅ Firebase Cloud Messaging notifications
+✅ Provider for state management
+✅ Persistent image caching
+✅ Modern, responsive UI
 
-### New Features
-- **Dark Mode Toggle:**
-  - Add a toggle button to enable/disable dark mode.
-- **Search Wallpapers:**
-  - Implement a search bar to find wallpapers by title or category.
-- **Share Wallpaper:**
-  - Add functionality to share wallpapers via social media or messaging apps.
+💡 Suggested Feature Updates (For Open Source Contributors)
+🧩 Beginner-Friendly Tasks
 
-### UI/UX Improvements
-- **Onboarding Screens:**
-  - Create an onboarding flow for first-time users.
-- **Animations:**
-  - Add smooth transitions and animations for better user experience.
+Fix small UI bugs or alignment issues.
 
-### Localization
-- **Multi-Language Support:**
-  - Add support for at least two additional languages.
+Clean up redundant code or inconsistent formatting.
 
-### Testing
-- **Unit Tests:**
-  - Write unit tests for existing features.
-- **Integration Tests:**
-  - Ensure the app works seamlessly across different platforms.
+🌙 New Features
 
-### Documentation
-- **Update README:**
-  - Add detailed setup instructions for contributors.
-- **Code Comments:**
-  - Add comments to explain complex logic in the codebase.
+Dark Mode Toggle: Add a manual dark mode switch.
 
-### Open Issues
-- Create GitHub issues for the above tasks with labels like `good first issue` and `help wanted` to guide contributors.
+Search Wallpapers: Implement a search bar by title or category.
 
----
+Share Wallpaper: Enable sharing via social media or chat apps.
 
-## License
-MIT
+🎨 UI/UX Enhancements
+
+Onboarding Screens: Introduce an onboarding experience for new users.
+
+Animations: Add smooth transitions and micro-interactions.
+
+🌍 Localization
+
+Add multi-language support (e.g., Hindi, Spanish).
+
+🧪 Testing
+
+Write unit tests for existing logic.
+
+Add integration tests to ensure platform consistency.
+
+📚 Documentation
+
+Improve the README with contributor guidelines.
+
+Add inline comments for complex sections of the codebase.
+
+🐞 Open Issues
+
+Create GitHub issues for the above enhancements with labels like:
+good first issue, help wanted, enhancement.
+
+🪪 License
+
+This project is licensed under the MIT License.
